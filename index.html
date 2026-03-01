@@ -652,21 +652,17 @@
         };
       });
 
-      // School card click to toggle details
+      // School card: click to toggle individually, others stay as-is
       document.querySelectorAll('.school-card').forEach(function (card) {
         card.onclick = function () {
-          var isOpen = card.classList.contains('open');
-          document.querySelectorAll('.school-card').forEach(function (c) { c.classList.remove('open'); });
-          if (!isOpen) card.classList.add('open');
+          card.classList.toggle('open');
         };
       });
 
-      // Experience card click to toggle details
+      // Experience card: click to toggle individually, others stay as-is
       document.querySelectorAll('.exp-card').forEach(function (card) {
         card.onclick = function () {
-          var isOpen = card.classList.contains('open');
-          document.querySelectorAll('.exp-card').forEach(function (c) { c.classList.remove('open'); });
-          if (!isOpen) card.classList.add('open');
+          card.classList.toggle('open');
         };
       });
 
