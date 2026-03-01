@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Routinli — Linghao Yang</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fafaf9;
+      color: #111;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav-main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 24px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .nav-main a {
+      color: #111;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .nav-main a:hover { border-bottom-color: #999; }
+    .nav-main a.active { border-bottom-color: #111; }
+
+    .detail-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #111; }
+    .detail-hero {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #e5e5e5;
+      display: block;
+      margin-bottom: 36px;
+    }
+    .detail-hero-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 36px;
+      color: #aaa;
+      font-size: 14px;
+    }
+    .detail-category {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+      margin: 0 0 10px;
+    }
+    .detail-title {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      line-height: 1.2;
+    }
+    .detail-divider {
+      width: 40px;
+      height: 2px;
+      background: #111;
+      margin: 0 0 24px;
+    }
+    .detail-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #333;
+      max-width: 640px;
+    }
+    .detail-body p { margin: 0 0 16px; }
+    .detail-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: #111;
+      font-weight: 500;
+      text-decoration: underline;
+      font-size: 15px;
+    }
+    .detail-link:hover { opacity: 0.7; }
+    .coming-soon-badge {
+      display: inline-block;
+      margin-top: 24px;
+      background: #f0f0f0;
+      color: #666;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-main" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="index.html#projects" class="active">Projects</a>
+    <a href="index.html#papers">Papers</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <div class="detail-wrap">
+    <a href="index.html#projects" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Projects
+    </a>
+
+    <img class="detail-hero" src="img-routinli.png" alt="Routinli" />
+
+    <p class="detail-category">AI App · iOS</p>
+    <h1 class="detail-title">Routinli</h1>
+    <div class="detail-divider"></div>
+    <div class="detail-body">
+      <p>Routinli is a habit and routine tracker built around the idea that consistency compounds. It helps you build streaks, visualise progress, and stay accountable without the guilt spiral.</p>
+      <p>Designed for people who want structure without rigidity — routines that flex with your life rather than break it.</p>
+      <p>Currently in development. Reach out if you'd like to be part of early testing.</p>
+    </div>
+    <span class="coming-soon-badge">Coming soon</span>
+  </div>
+</body>
+</html>

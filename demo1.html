@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Product Demo — Linghao Yang</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fafaf9;
+      color: #111;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav-main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 24px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .nav-main a {
+      color: #111;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .nav-main a:hover { border-bottom-color: #999; }
+    .nav-main a.active { border-bottom-color: #111; }
+
+    .detail-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #111; }
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #111;
+      margin-bottom: 36px;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      color: #888;
+      font-size: 14px;
+    }
+    .video-placeholder svg { opacity: 0.4; }
+    .detail-category {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+      margin: 0 0 10px;
+    }
+    .detail-title {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      line-height: 1.2;
+    }
+    .detail-divider {
+      width: 40px;
+      height: 2px;
+      background: #111;
+      margin: 0 0 24px;
+    }
+    .detail-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #333;
+      max-width: 640px;
+    }
+    .detail-body p { margin: 0 0 16px; }
+    .detail-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: #111;
+      font-weight: 500;
+      text-decoration: underline;
+      font-size: 15px;
+    }
+    .detail-link:hover { opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <nav class="nav-main" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="index.html#projects" class="active">Projects</a>
+    <a href="index.html#papers">Papers</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <div class="detail-wrap">
+    <a href="index.html#projects" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Projects
+    </a>
+
+    <!--
+      To embed a YouTube video, replace the placeholder below with:
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+      </div>
+
+      To embed a Bilibili video:
+      <div class="video-wrap">
+        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID" allowfullscreen></iframe>
+      </div>
+    -->
+    <img class="detail-hero" src="img-interactive-demo.png" alt="Interactive Product Demo" />
+    <!--
+      To also embed a video below, add:
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+      </div>
+    -->
+
+    <p class="detail-category">Demo · AI</p>
+    <h1 class="detail-title">Interactive Product Demo</h1>
+    <div class="detail-divider"></div>
+    <div class="detail-body">
+      <p>Replace this with a short description of what this demo shows and what problem it solves.</p>
+      <p>You can describe the key features, the tech stack, and what makes it interesting.</p>
+    </div>
+    <!-- <a class="detail-link" href="https://your-demo-link.com" target="_blank" rel="noopener">View live demo →</a> -->
+  </div>
+</body>
+</html>

@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Linghao Yang(James)</title>
+  <title>Linghao Yang (James)</title>
   <meta name="description" content="Linghao Yang (James) — Personal website." />
   <link rel="preload" as="image" href="me.png" />
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       background: #fff;
@@ -17,20 +18,93 @@
       text-rendering: optimizeLegibility;
     }
 
-    .wrap {
-      max-width: 720px;
+    /* ----- Animated background orbs ----- */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      will-change: transform;
+    }
+    .orb-1 {
+      width: 65vw;
+      height: 65vw;
+      background: radial-gradient(circle, rgba(175, 192, 255, 1) 0%, transparent 70%);
+      top: -20vw;
+      left: -20vw;
+      animation: drift-1 18s ease-in-out infinite alternate;
+    }
+    .orb-2 {
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(232, 177, 255, 1) 0%, transparent 70%);
+      top: -15vw;
+      right: -18vw;
+      animation: drift-2 22s ease-in-out infinite alternate;
+    }
+    @keyframes drift-1 {
+      0%   { transform: translate(0,    0)    scale(1); }
+      33%  { transform: translate(6vw,  4vw)  scale(1.04); }
+      66%  { transform: translate(2vw,  8vw)  scale(0.97); }
+      100% { transform: translate(8vw,  3vw)  scale(1.02); }
+    }
+    @keyframes drift-2 {
+      0%   { transform: translate(0,    0)    scale(1); }
+      33%  { transform: translate(-5vw, 5vw)  scale(0.96); }
+      66%  { transform: translate(-9vw, 2vw)  scale(1.05); }
+      100% { transform: translate(-4vw, 7vw)  scale(0.98); }
+    }
+
+    /* ensure all content sits above the orbs */
+    .nav-main,
+    .page-section { position: relative; z-index: 1; }
+
+    /* ----- Top nav (Sean-style) ----- */
+    .nav-main {
+      max-width: 960px;
       margin: 0 auto;
-      padding: 56px 24px;
+      padding: 24px 24px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      border-bottom: 1px solid #e5e5e5;
     }
-
-    .head {
-      text-align: center;
+    .nav-main a {
+      color: #111;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
     }
+    .nav-main a:hover { border-bottom-color: #999; }
+    .nav-main a.active { border-bottom-color: #111; }
 
+    /* ----- Sections ----- */
+    .page-section {
+      display: none;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    #projects { max-width: 860px; }
+    .page-section.active { display: block; }
+
+    /* ----- Home (existing hero + terminal) ----- */
+    .wrap { padding: 24px 0 0; }
+    .head { text-align: center; }
     .head img {
-      width: 140px;
-      height: 140px;
-      border-radius: 8px;
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
       object-fit: cover;
       display: block;
       margin: 0 auto 20px;
@@ -39,31 +113,10 @@
       background-color: #f5f5f5;
       background-image: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
     }
-
-    .head img.blur {
-      filter: blur(10px);
-      opacity: 0.8;
-    }
-
-    .head img.loaded {
-      filter: none;
-      opacity: 1;
-    }
-
-    h1 {
-      margin: 0 0 8px 0;
-      font-size: 30px;
-      letter-spacing: -0.02em;
-      font-weight: 600;
-    }
-
-    .tag {
-      margin: 0 0 16px 0;
-      color: #555;
-      font-weight: 400;
-      line-height: 1.4;
-    }
-
+    .head img.blur { filter: blur(10px); opacity: 0.8; }
+    .head img.loaded { filter: none; opacity: 1; }
+    .head h1 { margin: 0 0 8px 0; font-size: 30px; letter-spacing: -0.02em; font-weight: 600; }
+    .tag { margin: 0 0 16px 0; color: #555; font-weight: 400; line-height: 1.4; }
     .links {
       display: flex;
       flex-wrap: wrap;
@@ -72,7 +125,6 @@
       gap: 16px;
       margin-top: 8px;
     }
-
     .links a {
       margin: 0;
       color: #111;
@@ -84,24 +136,9 @@
       font-weight: 400;
       padding: 4px 0;
     }
-
-    .links a:hover {
-      color: #333;
-      transform: translateY(-1px);
-    }
-
-    .links a.disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    .links a:focus-visible {
-      outline: 2px solid #111;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-
+    .links a:hover { color: #333; transform: translateY(-1px); }
+    .links a.disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+    .links a:focus-visible { outline: 2px solid #111; outline-offset: 2px; border-radius: 4px; }
     .terminal {
       display: block;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -121,143 +158,251 @@
       overflow-wrap: anywhere;
       hyphens: auto;
     }
+    .terminal a { color: #8ab4f8; text-decoration: underline; }
+    .terminal a:hover { color: #cde3ff; }
+    .terminal[hidden] { display: none; }
 
-    .terminal a {
-      color: #8ab4f8;
-      text-decoration: underline;
+    /* ----- Projects grid ----- */
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 32px;
+      text-align: center;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 480px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    .project-card {
+      position: relative;
+      aspect-ratio: 3/2;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #e5e5e5;
+      text-decoration: none;
+      display: block;
+    }
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.35s ease;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .project-card:hover img { transform: scale(1.04); }
+    .project-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .project-card:hover .project-card-overlay { opacity: 1; }
+    .project-card-overlay span {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
     }
 
-    .terminal a:hover {
-      color: #cde3ff;
-    }
+    /* ----- Papers ----- */
+    .papers-placeholder { text-align: center; color: #888; padding: 48px 0; }
 
-    .terminal[hidden] {
-      display: none;
+    /* ----- Connect (social icons) ----- */
+    .connect-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 24px;
     }
-
-    .prompt {
-      color: #6cff6c;
+    .connect-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      color: #111;
+      transition: opacity 0.2s, transform 0.2s;
     }
+    .connect-icons a:hover { opacity: 0.7; transform: scale(1.08); }
+    .connect-icons svg { width: 28px; height: 28px; }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="head">
-      <img src="me.png" alt="Your Name" loading="eager" decoding="async" class="blur" onerror="this.style.display='none'" />
-      <h1>Linghao Yang (James)</h1>
-      <p class="tag">Ex-founder building practical AI apps and the ops behind them.</p>
-      <p class="links">
-        <a href="#about" data-target="about">About</a>
-        <a href="#email" data-target="email">Email</a>
-        <a href="#projects" data-target="projects">Projects</a>
-        <a href="#links" data-target="links">Links</a>
-        <a href="/CV.pdf" aria-label="CV" title="CV">CV↗</a>
-        <a href="https://scholar.google.com/" aria-label="Google Scholar" title="Google Scholar">Scholar↗</a>
-        <a href="https://github.com/" aria-label="GitHub" title="GitHub">GitHub↗</a>
-        <a href="https://twitter.com/" aria-label="Twitter" title="Twitter">X↗</a>
-      </p>
-    </div>
-    <div class="body">
-      <div id="terminal" class="terminal" aria-live="polite" hidden></div>
-    </div>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
   </div>
+
+  <nav class="nav-main" aria-label="Main">
+    <a href="#home" class="nav-link active" data-section="home">Home</a>
+    <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+    <a href="#papers" class="nav-link" data-section="papers">Papers</a>
+    <a href="#connect" class="nav-link" data-section="connect">Connect</a>
+  </nav>
+
+  <section id="home" class="page-section active">
+    <div class="wrap">
+      <div class="head">
+        <img src="me.png" alt="Linghao Yang" loading="eager" decoding="async" class="blur" onerror="this.style.display='none'" />
+        <h1>Linghao Yang (James)</h1>
+        <p class="tag">Ex-founder building practical AI apps and the ops behind them.</p>
+        <p class="links">
+          <a href="#about" data-target="about">About</a>
+          <a href="#email" data-target="email">Email</a>
+          <a href="#projects" data-target="projects" data-goto-section="projects">Projects</a>
+          <a href="#links" data-target="links">Links</a>
+          <a href="/CV.pdf" aria-label="CV" title="CV">CV↗</a>
+          <a href="https://scholar.google.com/" aria-label="Google Scholar" title="Google Scholar">Scholar↗</a>
+          <a href="https://github.com/" aria-label="GitHub" title="GitHub">GitHub↗</a>
+          <a href="https://twitter.com/" aria-label="X" title="X">X↗</a>
+        </p>
+      </div>
+      <div class="body">
+        <div id="terminal" class="terminal" aria-live="polite" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="page-section">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <a class="project-card" href="demo2.html">
+        <img src="img-general-multi-agent.png" alt="General Multi Agent" />
+        <div class="project-card-overlay"><span>General Multi Agent</span></div>
+      </a>
+      <a class="project-card" href="demo1.html">
+        <img src="img-interactive-demo.png" alt="Interactive Product Demo" />
+        <div class="project-card-overlay"><span>Interactive Product Demo</span></div>
+      </a>
+      <a class="project-card" href="routinli.html">
+        <img src="img-routinli.png" alt="Routinli" />
+        <div class="project-card-overlay"><span>Routinli</span></div>
+      </a>
+      <a class="project-card" href="replai.html">
+        <img src="img-replai.png" alt="ReplAI" />
+        <div class="project-card-overlay"><span>ReplAI</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="papers" class="page-section">
+    <h2 class="section-title">Papers</h2>
+    <p class="papers-placeholder">Coming soon.</p>
+  </section>
+
+  <section id="connect" class="page-section">
+    <h2 class="section-title">Connect</h2>
+    <div class="connect-icons">
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.xiaohongshu.com/user/profile/yourid" target="_blank" rel="noopener" aria-label="小红书">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      </a>
+      <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="mailto:jamesyanglh14@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </section>
+
   <script>
     (function () {
+      // ----- Nav: show section by hash -----
+      var navLinks = document.querySelectorAll('.nav-link');
+      var sections = document.querySelectorAll('.page-section');
+
+      function showSection(id) {
+        id = id || 'home';
+        sections.forEach(function (s) { s.classList.toggle('active', s.id === id); });
+        navLinks.forEach(function (a) { a.classList.toggle('active', a.dataset.section === id); });
+        location.hash = id === 'home' ? '' : id;
+      }
+
+      navLinks.forEach(function (a) {
+        a.onclick = function (e) {
+          e.preventDefault();
+          showSection(a.dataset.section);
+        };
+      });
+
+      window.onhashchange = function () {
+        var id = (location.hash || '#home').slice(1);
+        if (document.getElementById(id)) showSection(id);
+      };
+      if (location.hash) showSection(location.hash.slice(1));
+
+      // ----- Home: terminal (existing logic) -----
       var hero = document.querySelector('.head img');
       var tagEl = document.querySelector('.tag');
-
       if (hero && hero.complete) hero.classList.add('loaded'), hero.classList.remove('blur');
       else if (hero) hero.onload = function () { hero.classList.add('loaded'); hero.classList.remove('blur'); };
 
       var terminal = document.getElementById('terminal');
-      var navLinks = document.querySelectorAll('.links a[data-target]');
-      var allTopLinks = document.querySelectorAll('.links a');
-      var typingTimeout = null;
-      var typingToken = 0;
+      var homeLinks = document.querySelectorAll('.head .links a[data-target]');
+      var allTopLinks = document.querySelectorAll('.head .links a');
+      var typingTimeout = null, typingToken = 0;
 
       var contentMap = {
-        email: [
-          '> open email',
-          '',
-          '- jamesyanglh14@gmail.com',
-          '- linghaoy@seas.upenn.edu'
-        ],
-        about: [
-          '> open about',
-          '',
-          'Hi, I’m Linghao (James). I’m the cofounder of Agent2.AI, where we built a general multi-agent system that helps users orchestrate the right tools and workflows to automate real work. I love the loop of shipping, talking to customers, and iterating quickly, and I thrive in high-velocity teams that move fast and stay close to real user problems.',
-          '',
-          'Before going full-time on my startup, I was an Associate at Morgan Stanley in the FRTB PMO and Risk Quant org. I coordinated 20+ global teams, drove alignment across stakeholders, and ensured the program hit critical regulatory deadlines.',
-          '',
-          'Outside of work, I’m into dancing, tennis, the gym, and magic tricks. In my freshman year at Penn State, I founded ACEs Dance Crew, the school’s largest dance club, and I’ve competed in breaking battles as well. Always happy to connect, feel free to reach out.'
-        ],
-        projects: [
-          '> open projects',
-          '',
-          '- Project A - https://github.com/you/project-a',
-          '- Project B - https://example.com/demo',
-          '- Paper / Demo - https://arxiv.org/abs/xxxx.xxxxx'
-        ],
-        links: [
-          '> open links',
-          '',
-          'CV, Scholar, GitHub, X open in new tabs.',
-          'Terminal tabs (Email, About, Projects, Links) stream text like this.'
-        ]
+        email: ['> open email', '', '- jamesyanglh14@gmail.com', '- linghaoy@seas.upenn.edu'],
+        about: ['> open about', '', 'Hi, I\'m Linghao (James). I\'m the cofounder of Agent2.AI, where we built a general multi-agent system that helps users orchestrate the right tools and workflows to automate real work. I love the loop of shipping, talking to customers, and iterating quickly, and I thrive in high-velocity teams that move fast and stay close to real user problems.', '', 'Before going full-time on my startup, I was an Associate at Morgan Stanley in the FRTB PMO and Risk Quant org. I coordinated 20+ global teams, drove alignment across stakeholders, and ensured the program hit critical regulatory deadlines.', '', 'Outside of work, I\'m into dancing, tennis, the gym, and magic tricks. In my freshman year at Penn State, I founded ACEs Dance Crew, the school\'s largest dance club, and I\'ve competed in breaking battles as well. Always happy to connect, feel free to reach out.'],
+        projects: ['> open projects', '', '- Replai — Coming soon', '- Routinli — Coming soon', '- Product demos: see Projects page.'],
+        links: ['> open links', '', 'CV, Scholar, GitHub, X open in new tabs.', 'Projects: use the top nav or click Projects above.']
       };
 
       function clearTerminal() { terminal.textContent = ''; }
-
       function setNavDisabled(disabled) {
         allTopLinks.forEach(function (link) {
           link.classList.toggle('disabled', disabled);
           disabled ? link.setAttribute('aria-disabled', 'true') : link.removeAttribute('aria-disabled');
         });
       }
-
       function cancelTyping() {
         typingToken++;
         if (typingTimeout) { clearTimeout(typingTimeout); typingTimeout = null; }
         setNavDisabled(false);
       }
-
       function typeLines(lines, done) {
         setNavDisabled(true);
-        var i = 0, char = 0;
-        var myToken = ++typingToken;
+        var i = 0, char = 0, myToken = ++typingToken;
         function step() {
           if (myToken !== typingToken) return;
-          if (i >= lines.length) {
-            setNavDisabled(false);
-            if (myToken === typingToken && done) done();
-            return;
-          }
+          if (i >= lines.length) { setNavDisabled(false); if (myToken === typingToken && done) done(); return; }
           var line = lines[i];
-          if (char < line.length) {
-            terminal.textContent += line.charAt(char);
-            char++;
-          } else {
-            terminal.textContent += '\n';
-            i++; char = 0;
-          }
+          if (char < line.length) { terminal.textContent += line.charAt(char); char++; }
+          else { terminal.textContent += '\n'; i++; char = 0; }
           terminal.scrollTop = terminal.scrollHeight;
           typingTimeout = setTimeout(step, 4);
         }
         typingTimeout = setTimeout(step, 0);
       }
-
       function linkify() {
         var text = terminal.textContent;
-        var html = text
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
-        terminal.innerHTML = html;
+        terminal.innerHTML = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
       }
-
       function show(key) {
+        if (key === 'projects') { showSection('projects'); return; }
         var lines = contentMap[key] || ['> unknown command'];
         terminal.hidden = false;
         cancelTyping();
@@ -266,17 +411,22 @@
         terminal.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
-      navLinks.forEach(function (link) {
-        link.onclick = function (e) { e.preventDefault(); show(link.dataset.target); };
+      homeLinks.forEach(function (link) {
+        link.onclick = function (e) {
+          e.preventDefault();
+          if (link.dataset.gotoSection) { showSection(link.dataset.gotoSection); return; }
+          show(link.dataset.target);
+        };
       });
 
-      document.querySelectorAll('.links a[href]:not([data-target]):not([href^="mailto:"])').forEach(function (link) {
+      document.querySelectorAll('.head .links a[href]:not([data-target]):not([href^="mailto:"])').forEach(function (link) {
         link.target = '_blank';
         link.rel = 'noopener';
       });
 
       var hash = location.hash.slice(1);
-      if (hash && contentMap[hash]) show(hash);
+      if (hash && contentMap[hash] && document.getElementById('home').classList.contains('active')) show(hash);
+
     })();
   </script>
 </body>
