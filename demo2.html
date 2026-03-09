@@ -53,7 +53,7 @@
     .video-wrap {
       position: relative;
       width: 100%;
-      max-width: 720px;
+      max-width: 840px;
       aspect-ratio: 16/9;
       border-radius: 10px;
       overflow: hidden;
@@ -111,6 +111,8 @@
       max-width: 640px;
     }
     .detail-body p { margin: 0 0 16px; }
+    .detail-links-heading { margin-top: 24px; margin-bottom: 8px; font-weight: 600; color: #111; }
+    .detail-body .detail-link { display: inline-block; margin-bottom: 6px; }
     .detail-link {
       display: inline-block;
       margin-top: 24px;
@@ -138,7 +140,7 @@
 
     <div class="video-wrap">
       <video
-        src="video-general-multi-agent.mp4"
+        src="video-multi agent.AI.mp4"
         poster="img-general-multi-agent.png"
         controls
         playsinline
@@ -152,10 +154,20 @@
     <h1 class="detail-title">General Multi Agent</h1>
     <div class="detail-divider"></div>
     <div class="detail-body">
-      <p>Replace this with a short description of what this demo shows and what problem it solves.</p>
-      <p>You can describe the key features, the tech stack, and what makes it interesting.</p>
+      <p>At Agent2.AI, I helped build a Super Agent designed to turn goals into finished work. A user might ask for competitor research, a slide deck, a web page, or a workflow that spans multiple tools. Instead of making the user figure out which AI product to use at each step, our system breaks the task into smaller parts and routes each part to the best available executor. That can be one of our own agents, a third-party tool, an automation workflow, or a human service provider.</p>
+
+      <p>We built this because modern work is still full of tool switching and broken handoffs. People jump between products, manually move context around, and lose time every time the workflow crosses a boundary. After talking with more than 80 users, we found that their biggest frustration was not content generation itself. It was the friction of turning AI output into actual completed work.</p>
+
+      <p>What excited me about this space was the shift from single-model experiences to coordinated systems. I do not think the future is one AI that does everything internally. I think the future is an orchestration layer that can intelligently combine specialized agents, existing software, APIs, workflows, and humans. That is the product direction we pursued with Agent2.AI.</p>
+
+      <p>We moved fast after pivoting into this idea. Within a few weeks, we built a live MVP, launched core agents, integrated third-party workflows, and started building an early waitlist. The work combined product thinking, front-end design, fast iteration, and a strong focus on how users actually move from prompt to execution.</p>
+
+      <p class="detail-links-heading">Links:</p>
+      <p>
+        <a class="detail-link" href="https://techedgeai.com/agent2-ai-launches-super-agent-ai-that-doesnt-just-think-it-delivers/" target="_blank" rel="noopener">TechEdge AI — Agent2.AI Launches Super Agent</a><br>
+        <a class="detail-link" href="https://ittech-pulse.com/news/agent2-ai-introduces-super-agent-the-operating-system-for-agent-based-work/" target="_blank" rel="noopener">IT Tech Pulse — Super Agent, the Operating System for Agent-Based Work</a>
+      </p>
     </div>
-    <!-- <a class="detail-link" href="https://your-demo-link.com" target="_blank" rel="noopener">View live demo →</a> -->
   </div>
 </body>
 </html>

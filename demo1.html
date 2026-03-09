@@ -53,18 +53,22 @@
     .video-wrap {
       position: relative;
       width: 100%;
+      max-width: 840px;
       aspect-ratio: 16/9;
       border-radius: 10px;
       overflow: hidden;
       background: #111;
-      margin-bottom: 36px;
+      margin: 0 auto 36px;
     }
-    .video-wrap iframe {
+    .video-wrap iframe,
+    .video-wrap video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       border: none;
+      object-fit: contain;
+      object-position: center;
     }
     .video-placeholder {
       width: 100%;
@@ -108,6 +112,8 @@
       max-width: 640px;
     }
     .detail-body p { margin: 0 0 16px; }
+    .detail-links-heading { margin-top: 24px; margin-bottom: 8px; font-weight: 600; color: #111; }
+    .detail-body .detail-link { display: inline-block; margin-bottom: 6px; }
     .detail-link {
       display: inline-block;
       margin-top: 24px;
@@ -133,33 +139,35 @@
       Projects
     </a>
 
-    <!--
-      To embed a YouTube video, replace the placeholder below with:
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-      </div>
+    <div class="video-wrap">
+      <video
+        src="video Interactive Product Demo.MOV"
+        poster="img-interactive-demo.png"
+        controls
+        playsinline
+        preload="metadata"
+      >
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-      To embed a Bilibili video:
-      <div class="video-wrap">
-        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID" allowfullscreen></iframe>
-      </div>
-    -->
-    <img class="detail-hero" src="img-interactive-demo.png" alt="Interactive Product Demo" />
-    <!--
-      To also embed a video below, add:
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-      </div>
-    -->
-
-    <p class="detail-category">Demo · AI</p>
+    <p class="detail-category">Demo in Chinese</p>
     <h1 class="detail-title">Interactive Product Demo</h1>
     <div class="detail-divider"></div>
     <div class="detail-body">
-      <p>Replace this with a short description of what this demo shows and what problem it solves.</p>
-      <p>You can describe the key features, the tech stack, and what makes it interesting.</p>
+      <p>At Agent2.AI, we built an AI-guided product playground that helps SaaS companies turn product exploration into a live, interactive experience. Instead of relying on static demos or delayed sales calls, users can try the product instantly in a cloud-hosted environment and get step-by-step guidance from an AI assistant along the way.</p>
+
+      <p>I wanted to build this because I had seen how often SaaS teams lose users before the real product experience even begins. Prospects drop off when they cannot quickly understand the value, and customers churn when onboarding is too reactive or too manual. We believed there should be a better way to let people learn a product by actually using it.</p>
+
+      <p>Unlike traditional demo tools that feel more like clickable slide decks, our approach gives users access to a live product environment with AI guidance layered on top. That makes the experience more flexible, more realistic, and more useful across both pre-sales and post-sales workflows.</p>
+
+      <p>To validate the product, we worked with about 10 design partners including Alibaba, SensorData, PingCap, Akool, Firework, and GitRoll. We also signed 3 early paying customers, with pricing reaching $999 per month. Those early collaborations helped us sharpen the product and confirmed strong demand for a more interactive, self-serve product experience.</p>
+
+      <p class="detail-links-heading">Links:</p>
+      <p>
+        <a class="detail-link" href="https://akool.com/resources/agent2-ai-transforms-sales-demos-with-akools-ai-powered-digital-human" target="_blank" rel="noopener">AKOOL — Agent2.AI Transforms Sales Demos with AI-Powered Digital Human</a>
+      </p>
     </div>
-    <!-- <a class="detail-link" href="https://your-demo-link.com" target="_blank" rel="noopener">View live demo →</a> -->
   </div>
 </body>
 </html>
