@@ -139,6 +139,7 @@
     .links a:hover { color: #333; transform: translateY(-1px); }
     .links a.disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
     .links a:focus-visible { outline: 2px solid #111; outline-offset: 2px; border-radius: 4px; }
+    .links a.link-hidden { display: none; }
     .terminal {
       display: block;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -347,7 +348,41 @@
     }
 
     /* ----- Papers ----- */
-    .papers-placeholder { text-align: center; color: #888; padding: 48px 0; }
+    .papers-subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0 auto 12px;
+      max-width: 640px;
+      text-align: left;
+    }
+    .papers-intro {
+      max-width: 640px;
+      margin: 0 auto 32px;
+      font-size: 16px;
+      line-height: 1.75;
+      color: #333;
+      text-align: left;
+    }
+    .papers-list {
+      max-width: 640px;
+      margin: 0 auto;
+      list-style: none;
+      padding: 0;
+    }
+    .papers-list li {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .papers-list li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .papers-list a {
+      color: #111;
+      font-weight: 500;
+      text-decoration: none;
+      line-height: 1.4;
+    }
+    .papers-list a:hover { text-decoration: underline; }
 
     /* ----- Connect (social icons) ----- */
     .connect-icons {
@@ -396,10 +431,10 @@
           <a href="#school" data-target="school">School</a>
           <a href="#experience" data-target="experience">Experience</a>
           <a href="#links" data-target="links">Links</a>
-          <a href="/CV.pdf" aria-label="CV" title="CV">CV↗</a>
-          <a href="https://scholar.google.com/" aria-label="Google Scholar" title="Google Scholar">Scholar↗</a>
-          <a href="https://github.com/" aria-label="GitHub" title="GitHub">GitHub↗</a>
-          <a href="https://twitter.com/" aria-label="X" title="X">X↗</a>
+          <a href="/CV.pdf" class="link-hidden" aria-label="CV" title="CV">CV↗</a>
+          <a href="https://scholar.google.com/citations?user=KW8GZxsAAAAJ&hl=en" aria-label="Google Scholar" title="Google Scholar">Scholar↗</a>
+          <a href="https://github.com/JaimeYeung" aria-label="GitHub" title="GitHub">GitHub↗</a>
+          <a href="https://x.com/James_YLH" aria-label="X" title="X">X↗</a>
         </p>
       </div>
       <div class="body">
@@ -506,7 +541,16 @@
 
   <section id="papers" class="page-section">
     <h2 class="section-title">Papers</h2>
-    <p class="papers-placeholder">Coming soon.</p>
+    <h3 class="papers-subtitle">Research interests</h3>
+    <p class="papers-intro">My research interests include Artificial Intelligence, Machine Learning, and Large Language Models. I'm particularly excited about turning AI advances into real-world products that can help more people in meaningful ways.</p>
+    <ul class="papers-list">
+      <li>
+        <a href="https://www.preprints.org/manuscript/202603.0351" target="_blank" rel="noopener">MIN-Trust: A Minimum Necessary Information Trust Orchestration Framework for Multi-Agent Collaboration</a>
+      </li>
+      <li>
+        <a href="https://www.preprints.org/manuscript/202603.0348" target="_blank" rel="noopener">Detecting and Repairing Role Drift in Multi-Agent Collaboration with Lightweight Protocols</a>
+      </li>
+    </ul>
   </section>
 
   <section id="connect" class="page-section">
