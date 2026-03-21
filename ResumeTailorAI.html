@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume Tailor AI — Linghao Yang</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fafaf9;
+      color: #111;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav-main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 24px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .nav-main a {
+      color: #111;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .nav-main a:hover { border-bottom-color: #999; }
+    .nav-main a.active { border-bottom-color: #111; }
+
+    .detail-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #111; }
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 840px;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #111;
+      margin: 0 auto 36px;
+    }
+    .video-wrap iframe,
+    .video-wrap video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      object-fit: contain;
+      object-position: center;
+    }
+    .detail-category {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+      margin: 0 0 10px;
+    }
+    .detail-title {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      line-height: 1.2;
+    }
+    .detail-divider {
+      width: 40px;
+      height: 2px;
+      background: #111;
+      margin: 0 0 24px;
+    }
+    .detail-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #333;
+      max-width: 640px;
+    }
+    .detail-body p { margin: 0 0 16px; }
+    .detail-links-heading { margin-top: 24px; margin-bottom: 8px; font-weight: 600; color: #111; }
+    .detail-body .detail-link { display: inline-block; margin-bottom: 6px; }
+    .detail-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: #111;
+      font-weight: 500;
+      text-decoration: underline;
+      font-size: 15px;
+    }
+    .detail-link:hover { opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <nav class="nav-main" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="index.html#projects" class="active">Projects</a>
+    <a href="index.html#papers">Papers</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <div class="detail-wrap">
+    <a href="index.html#projects" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Projects
+    </a>
+
+    <div class="video-wrap">
+      <video
+        src="Resume Tailor AI demo.mp4"
+        poster="Resume Tailor AI.jpg"
+        controls
+        playsinline
+        preload="metadata"
+      >
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <p class="detail-category">AI Tool</p>
+    <h1 class="detail-title">Resume Tailor AI</h1>
+    <div class="detail-divider"></div>
+    <div class="detail-body">
+      <p>I kept seeing the same problem around me: smart, capable people were applying to jobs they were genuinely qualified for, but getting almost no interviews. These were not weak candidates. They had solid experience, strong backgrounds, and real skills. But their resumes were not getting through.</p>
+
+      <p>As I talked to more job seekers, I realized many of them were spending hours rewriting their resume for every single job description, just to match the wording of the ATS. The issue was often not qualification, but phrasing. If the resume did not contain enough of the exact keywords from the job description, it could get filtered out before any human ever read it.</p>
+
+      <p>That felt deeply broken. People should not be invisible because they used "A/B testing" while the job description said "A/B test," or because their experience was real but not translated into the exact language an ATS expects.</p>
+
+      <p>Resume Tailor AI came from that observation. The goal is simple: help qualified people present their experience in a way that maximizes ATS match, without fabricating anything and without destroying the authenticity of their resume.</p>
+
+      <p class="detail-links-heading">Links:</p>
+      <p>
+        <a class="detail-link" href="https://github.com/JaimeYeung/Resume-Tailor-AI" target="_blank" rel="noopener">GitHub — Resume Tailor AI</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
